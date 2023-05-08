@@ -22,4 +22,9 @@
         android:name="br.raianlobato.mobile.scadastre.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_cad_clientes"
+        android:name="br.raianlobato.mobile.scadastre.CadClientes"
+        android:label="@string/title_cad_clientes"
+        tools:layout="@layout/fragment_cad_clientes" />
 </navigation>
