@@ -1,5 +1,6 @@
 package br.raianlobato.mobile.scadastre.ui.cliente;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,19 +9,49 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import br.raianlobato.mobile.scadastre.R;
+import br.raianlobato.mobile.scadastre.model.Cliente;
+import br.raianlobato.mobile.scadastre.ui.dashboard.DashboardViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CadClientes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CadClientes extends Fragment {
+public class CadClientes extends Fragment implements View.OnClickListener , Response.ErrorListener,
+        Response.Listener{
 
     //atributos
     private EditText txnome;
+    private EditText txtelefone;
+    private EditText txidentidade;
+    private EditText txendereco;
+    private EditText txcomplemento;
+    private EditText txcep;
+    private EditText txcpf;
+    private EditText txsenha;
+    private EditText txrepsenha;
+    private Spinner sppais;
+    private Button btsalvar;
+    private View root;
+
+    //volley
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectReq;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +62,8 @@ public class CadClientes extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
 
     public CadClientes() {
         // Required empty public constructor
@@ -71,7 +104,99 @@ public class CadClientes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_clientes, container, false);
+        this.root = inflater.inflate(R.layout.fragment_cad_clientes, container, false);
+
+        this.txnome = (EditText) root.findViewById(R.id.txnm);
+        this.txtelefone = (EditText) root.findViewById(R.id.txtelefone);
+        this.txidentidade = (EditText) root.findViewById(R.id.txidentidade);
+        this.txendereco = (EditText) root.findViewById(R.id.txendereco);
+        this.txcomplemento = (EditText) root.findViewById(R.id.txcomplemento);
+        this.txcep = (EditText) root.findViewById(R.id.txcep);
+        this.txcpf = (EditText) root.findViewById(R.id.txcpf);
+        this.txsenha = (EditText) root.findViewById(R.id.txsenha);
+        this.sppais = (Spinner) root.findViewById(R.id.sppais);
+        this.btsalvar = (Button) root.findViewById(R.id.btsalvar);
+        //definindo o listener do botão
+        this.btsalvar.setOnClickListener(this);
+
+        //instanciando a fila de requests - caso o objeto seja o root
+        this.requestQueue = Volley.newRequestQueue(root.getContext());
+
+        //inicializando a fila de requests do SO
+        this.requestQueue.start();
+
+
+        return root;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            //verificando se é o botão salvar case R.id.btSalvar:
+            case R.id.btsalvar:
+
+                //instanciando class de negócio
+
+                Cliente c = new Cliente();
+
+
+                c.setNomeCompleto(this.txnome.getText().toString());
+                c.setNumerodeCelular(this.txtelefone.getText().toString());
+                c.setNumerodeIdentidade(this.txidentidade.getText().toString());
+                c.setEndereco(this.txendereco.getText().toString());
+                c.setComplemento(this.txcomplemento.getText().toString());
+                c.setCEP(this.txcep.getText().toString());
+                c.setCPF(this.txcpf.getText().toString());
+                c.setSenha(this.txsenha.getText().toString());
+                //Spiner
+                c.setPais(String.valueOf(this.sppais.getSelectedItemPosition()));
+/*
+                Context context =  view.getContext();
+                CharSequence text = "salvo com sucesso!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText (context, text, duration); toast.show();
+*/
+                //request para servidor REST
+                jsonObjectReq = new JsonObjectRequest( Request.Method.POST,
+                        "http://10.0.2.2:8080/segServer/rest/usuario",
+                        c.toJsonObject(), this, this);
+                requestQueue.add(jsonObjectReq);
+                break;
+        }
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        String resposta = response.toString(); try {
+            Snackbar mensagem = null;
+            if (resposta.equals("500")) {
+                mensagem = Snackbar.make(root, "Erro! = " + resposta, Snackbar.LENGTH_LONG);
+                mensagem.show();
+            } else {
+                //sucesso //limpar campos da tela
+                this.txnome.setText("");
+                this.txtelefone.setText("");
+                this.txidentidade.setText("");
+                this.txendereco.setText("");
+                this.txcomplemento.setText("");
+                this.txcep.setText("");
+                this.txcpf.setText("");
+                this.txsenha.setText("");
+                //mensagem de sucesso Snackbar mensagem =
+                Snackbar.make(root, "Sucesso! = " + resposta, Snackbar.LENGTH_LONG);
+                mensagem.show();
+            }
+        } catch (Exception e) {  e.printStackTrace(); }
+
+
+
     }
 }
+

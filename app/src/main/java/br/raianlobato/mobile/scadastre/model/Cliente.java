@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.util.jar.JarException;
 
 public class Cliente {
+
     //atributos do cliente
     private String nomecompleto;
     private String numerodeCelular;
