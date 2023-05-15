@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberPassword" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -138,11 +138,11 @@
                 android:text="Repita a senha " />
 
             <EditText
-                android:id="@+id/txrepitasenha"
+                android:id="@+id/txrepsenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberPassword" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/textView12"

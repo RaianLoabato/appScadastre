@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import br.raianlobato.mobile.scadastre.R;
 
@@ -21,6 +23,18 @@ public class CadClientes extends Fragment {
 
     //atributos
     private EditText txnome;
+    private EditText txtelefone;
+    private EditText txemail;
+    private EditText txidentidade;
+    private EditText txendereco;
+    private EditText txcomplemento;
+    private EditText txcep;
+    private EditText txcpf;
+    private EditText txsenha;
+    private EditText txrepsenha;
+    private Spinner sppais;
+    private Button btsalvar;
+    private View root;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -71,7 +85,22 @@ public class CadClientes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad_clientes, container, false);
+        this.root = inflater.inflate(R.layout.fragment_cad_clientes, container, false);
+        this.txnome = (EditText) root.findViewById(R.id.txnome);
+        this.txtelefone = (EditText) root.findViewById(R.id.txtelefone);
+        this.txemail = (EditText) root.findViewById(R.id.txemail);
+        this.txidentidade = (EditText) root.findViewById(R.id.txidentidade);
+        this.txendereco = (EditText) root.findViewById(R.id.txendereco);
+        this.txcomplemento = (EditText) root.findViewById(R.id.txcomplemento);
+        this.txcep = (EditText) root.findViewById(R.id.txcep);
+        this.txcpf = (EditText) root.findViewById(R.id.txcpf);
+        this.txsenha = (EditText) root.findViewById(R.id.txsenha);
+        this.sppais = (Spinner) root.findViewById(R.id.sppais);
+        this.btsalvar = (Button) root.findViewById(R.id.btsalvar);
+
+
+        return root;
     }
 }
