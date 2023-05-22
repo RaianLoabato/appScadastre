@@ -52,6 +52,8 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
     private RequestQueue requestQueue;
     private JsonObjectRequest jsonObjectReq;
 
+    //
+
 
 
     // TODO: Rename parameter arguments, choose names that match
