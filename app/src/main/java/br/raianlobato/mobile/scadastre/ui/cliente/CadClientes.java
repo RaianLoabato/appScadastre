@@ -1,6 +1,13 @@
+/******************************************************************************
+
+ Welcome to GDB Online.
+ GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby,
+ C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+ Code, Compile, Run and Debug online from anywhere in world.
+
+ *******************************************************************************/
 package br.raianlobato.mobile.scadastre.ui.cliente;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,7 +30,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import br.raianlobato.mobile.scadastre.R;
 import br.raianlobato.mobile.scadastre.model.Cliente;
-import br.raianlobato.mobile.scadastre.ui.dashboard.DashboardViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,7 +125,7 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
         this.txsenha = (EditText) root.findViewById(R.id.txsenha);
         this.sppais = (Spinner) root.findViewById(R.id.sppais);
         this.btsalvar = (Button) root.findViewById(R.id.btsalvar);
-        //definindo o listener do botão
+        //definindo o listener do botão5634477
         this.btsalvar.setOnClickListener(this);
 
         //instanciando a fila de requests - caso o objeto seja o root
@@ -162,7 +167,7 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
 */
                 //request para servidor REST
                 jsonObjectReq = new JsonObjectRequest( Request.Method.POST,
-                        "http://10.0.2.2:8080/segServer/rest/usuario",
+                        "http://10.0.2.2/cadpessoa.php",
                         c.toJsonObject(), this, this);
                 requestQueue.add(jsonObjectReq);
                 break;
@@ -201,4 +206,5 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
 
     }
 }
+
 

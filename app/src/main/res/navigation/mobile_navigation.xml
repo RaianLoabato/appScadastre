@@ -11,11 +11,6 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="br.raianlobato.mobile.scadastre.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -27,4 +22,9 @@
         android:name="br.raianlobato.mobile.scadastre.ui.cliente.CadClientes"
         android:label="@string/title_cad_clientes"
         tools:layout="@layout/fragment_cad_clientes" />
+    <fragment
+        android:id="@+id/navigation_con_cliente"
+        android:name="br.raianlobato.mobile.scadastre.ui.cliente.ConCliente"
+        android:label="@string/title_con_cliente"
+        tools:layout="@layout/fragment_con_cliente_list" />
 </navigation>

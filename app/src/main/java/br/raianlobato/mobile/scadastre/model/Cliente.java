@@ -1,3 +1,11 @@
+/******************************************************************************
+
+ Welcome to GDB Online.
+ GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby,
+ C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+ Code, Compile, Run and Debug online from anywhere in world.
+
+ *******************************************************************************/
 package br.raianlobato.mobile.scadastre.model;
 
 import org.json.JSONException;
@@ -23,16 +31,16 @@ public class Cliente {
     //construtor
     public Cliente(JSONObject jo) {
         try {
-            this.nomecompleto = "";
-            this.numerodeCelular = jo.getString("numerodeCelular");
-            this.numerodeIdentidade = jo.getString("numerodeIdentidade");
-            this.cpf = jo.getString("cpf");
-            this.cep = jo.getString("cep");
-            this.endereco = jo.getString("endereco");
-            this.complemento = jo.getString("complemento");
-            this.senha = jo.getString("senha");
-            this.repitaSenha = jo.getString("repitaSenha");
-            this.pais = 0;
+            this.nomecompleto = "nomepessoa";
+            this.numerodeCelular = jo.getString("celularpessoa");
+            this.numerodeIdentidade = jo.getString("identidadepessoa");
+            this.cpf = jo.getString("cpfpessoa");
+            this.cep = jo.getString("ceppessoa");
+            this.endereco = jo.getString("endecopessoa");
+            this.complemento = jo.getString("complementopessoa");
+            this.senha = jo.getString("senhapessoa");
+            this.repitaSenha = jo.getString("repitasenhapessoa");
+            this.pais = 1;
             this.id = jo.getInt("id");
         }catch (JSONException je) {
             je.printStackTrace();
@@ -63,16 +71,15 @@ public class Cliente {
     public JSONObject  toJsonObject(){
         JSONObject json = new JSONObject();
         try {
-            json.put("nomecompleto", null);
-            json.put("numerodeCelular", this.numerodeCelular);
-            json.put("numerodeIdentidade", this.numerodeIdentidade);
-            json.put("cpf", this.cpf);
-            json.put("cep", this.cep);
-            json.put("endereco", this.endereco);
-            json.put("complemento", this.complemento);
-            json.put("senha", this.senha);
-            json.put("repitaSenha", this.repitaSenha);
-            json.put("repitaSenha", this.repitaSenha);
+            json.put("nomepessoa", null);
+            json.put("celularpessoa", this.numerodeCelular);
+            json.put("identidadepessoa", this.numerodeIdentidade);
+            json.put("cpfpessoa", this.cpf);
+            json.put("ceppessoa", this.cep);
+            json.put("endecopessoa", this.endereco);
+            json.put("complementopessoa", this.complemento);
+            json.put("senhapessoa", this.senha);
+            json.put("repitasenhapessoa", this.repitaSenha);
 
 
         }catch (JSONException je) {
@@ -255,4 +262,5 @@ public class Cliente {
     }
 
 }
+
 

@@ -6,6 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_cad_clientes">Cad. Clientes</string>
+    <string name="title_con_cliente" />
+    <string name="title_con_cliente_list" />
 
     <string-array name="opcoes_pais">
         <item>Selecione</item>
