@@ -144,6 +144,7 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
             //verificando se é o botão salvar case R.id.btSalvar:
             case R.id.btsalvar:
 
+
                 //instanciando class de negócio
 
                 Cliente c = new Cliente();
@@ -176,6 +177,10 @@ public class CadClientes extends Fragment implements View.OnClickListener , Resp
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        Snackbar mensagem = Snackbar.make(root,
+                "Ops! Houve um problema ao realizar a consulta: " +
+                        error.toString(), Snackbar.LENGTH_LONG);
+
 
     }
 
